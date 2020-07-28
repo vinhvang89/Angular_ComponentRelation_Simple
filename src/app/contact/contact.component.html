@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <app-search (keyword)="search($event)"></app-search>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Group</th>
+        <th scope="col">Handle</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let contact of contactFilter; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.email}}</td>
+        <td><app-group></app-group></td>
+        <td>
+          <button class="btn btn-danger" (click)="delete(contact.id)">Delete</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
