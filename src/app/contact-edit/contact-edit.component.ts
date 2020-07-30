@@ -37,6 +37,7 @@ export class ContactEditComponent implements OnInit {
       email : [this.contact.email],
       group_id : [this.contact.group_id]
     })
+    this.groups = this.groupService.getAll()
   }
   get name() {
     return this.editForm.get('name');
@@ -45,4 +46,5 @@ export class ContactEditComponent implements OnInit {
   get email() {
     return this.editForm.get('email');
   }
+
 }
