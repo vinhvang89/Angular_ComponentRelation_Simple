@@ -6,23 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group.component.css']
 })
 export class GroupComponent implements OnInit {
-  groups : group[] = [
-    new group(1 ,"Tử hình"), new group(2, "Tù chung thân")
-  ]
   constructor() { }
+  keyword : string ;
 
   ngOnInit(): void {
   }
-
-}
-class group {
-  id : number;
-  name: string;
-
-  constructor(id,name) {
-    this.id = id;
-    this.name = name;
-
+  getInput(event){
+    this.keyword = event;
   }
-
 }
+

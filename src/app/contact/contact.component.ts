@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {IContact} from "../icontact";
+import {IContact} from "./icontact";
+import {GroupService} from "../group/group.service";
+import {IGroup} from "../group/igroup";
+import {ContactService} from "./contact.service";
 
 @Component({
   selector: 'app-contact',
@@ -7,31 +10,20 @@ import {IContact} from "../icontact";
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  contacts: IContact[] = [];
+
+  groups: IGroup[] = []
+
   contactFilter = [];
-  filter: string='';
-  constructor() {
+
+  constructor(private groupService: GroupService,
+              private contactService: ContactService) {
   }
 
-  contacts: IContact[] = [
-    {
-      id: 1,
-      name: "Trump",
-      email: "donald_trump@gov.us"
-    },
-    {
-      id: 2,
-      name: "Biden",
-      email: "fuck_u_trump@gov.us"
-    },
-    {
-      id: 3,
-      name: "Phúc",
-      email: "dkm_trump+biden@gov.vn"
-    }
-  ]
-
   ngOnInit(): void {
-    this.contactFilter = this.contacts;
+    this.contactFilter = this.contactService.getAll();
+    this.groups = this.groupService.getAll();
+    this.contacts = this.contactService.getAll()
   }
 
   search(event) {

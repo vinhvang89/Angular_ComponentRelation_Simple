@@ -2,9 +2,11 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-4">
+        <button [routerLink]="['create']">Create</button>
       </div>
       <div class="col-md-8">
         <app-search (keyword)="search($event)"></app-search>
+
       </div>
     </div>
   </div>
@@ -24,9 +26,12 @@
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ contact.name }}</td>
         <td>{{ contact.email}}</td>
-        <td><app-group></app-group></td>
+        <ng-container *ngFor=" let group of groups">
+            <td *ngIf="group.id == contact.group_id">{{group.name}}</td>
+        </ng-container>
         <td>
           <button class="btn btn-danger" (click)="delete(contact.id)">Delete</button>
+          <button class="btn btn-danger" [routerLink]="['edit',contact.id]">Edit</button>
         </td>
       </tr>
 
@@ -34,3 +39,5 @@
     </table>
   </div>
 </div>
+
+
